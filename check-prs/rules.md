@@ -6,7 +6,7 @@
 
 Skip a PR when: draft; I am the author; author is a bot (`[bot]`, `-bot`, type Bot, or `bot_logins`); base is not the default branch; WIP, do-not-review, or hold label or title; someone else requested changes; I approved this SHA already; a code owner of the changed paths approved; I am not a code owner of any changed path and nobody asked me directly; done or dismissed today.
 
-Do not skip: CI red, CI pending, conflict, stale (open over 14 days). Show the state. Approve is blocked.
+Do not skip: CI red, CI pending, conflict, stale (open over 14 days). Show the state. Approve is blocked in the Easy and Medium-A tabs. In a review, CI red with a behind branch or test-only failures can still be approved (see `flow.md`, Review).
 `review_decision` other than `REVIEW_REQUIRED` or `APPROVED` (empty): Approve is blocked.
 A check named `auto_approve_pr` is only a check. Count only reviews from people.
 
@@ -30,7 +30,7 @@ Order: hard signals first, then size. Counted lines and files exclude tests, sto
 
 1. CI green (`ci` is `green`).
 2. Meaningful description (what and why, not only the template). `description_chars` under 40 is a fail.
-   A missing Jira key does not fail this check. The PR can still pass and be approved. The approval body is then exactly: `LGTM! Please link the Jira ticket in the description.` (posted as the review body, instead of the default approval body).
+   A missing Jira key does not fail this check. The PR can still pass and be approved. The approval body is then exactly: `Looks good, thanks! Please add the Jira ticket to the description.` (posted as the review body, instead of the default approval body).
 3. Code matches intent: Sonnet reads the full diff and the description. With a Jira key, it also reads the Jira `summary`. It must quote lines.
 4. Tests are optional. A missing test on a big PR is a warning on the row.
 5. Blast radius known and small.

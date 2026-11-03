@@ -27,7 +27,10 @@ When a tab ends, run `scripts/cache.py set "<cache_key>" closed_date=<today> my_
 - Code-owner warning: when `i_am_code_owner` is false, say "your approval does not satisfy code owners". If I was asked directly and own no changed path, offer Comment only.
 - I choose for each PR: Comment (post the drafts as shown), Edit (I change a draft or drop a finding, then show the new draft again), Approve, or Skip.
 - Post a comment only as the text I saw last. Never change the text after I choose.
-- CI red or pending, but the review finds no critical or major issue: Approve is blocked. Offer Comment with the body `Codewise LGTM. Please fix CI check and poke me for a re-review. Thanks!` Say in the row that the CI failure is often an out-of-date branch. Do not draft a CI question.
+- CI red or pending, and the review finds no critical or major issue:
+  - If the branch is behind (`branch_behind` is true) or the failing checks are only test checks: Approve is allowed. Use the normal approval body (see Posting). Say in the row why CI is red.
+  - Otherwise: Approve is blocked. Offer Comment with the body `Code looks good to me! Ping me once the CI is green and I will take another look.`
+  - Do not draft a CI question.
 
 ## Posting
 
@@ -35,7 +38,8 @@ Use only `scripts/post.py <repo> <number> <head_sha> <approve|comment> --body-fi
 - `<head_sha>` is the SHA saved at triage. The script reads the head again and stops if it changed. Then review again.
 - It never posts twice on the same PR, SHA, and action. A new SHA can be reviewed again.
 - It records every post in `cache.json` (PR, SHA, action, time).
-- Approve body for easy and medium-A: `LGTM — auto-triaged as low-risk`. If the PR has no Jira key (`jira` is empty), the body is `LGTM! Please link the Jira ticket in the description.`
+- Approve body for easy and medium-A: `Looks good, thanks!` If the PR has no Jira key (`jira` is empty), the body is `Looks good, thanks! Please add the Jira ticket to the description.`
+- These bodies are the tone for all review bodies: friendly, short, like a colleague. This tone rule does not apply to inline code comments. Keep those as they are.
 - The same Jira line applies to a PR I approve after a review. Add it to the approval body when `jira` is empty.
 - Week 1 (`approvals_enabled: false`): one PR at a time, only what I choose. No `--batch`.
 - `approvals_enabled: true`: one batch confirmation for Easy and Medium-A approvals (`--batch`).
