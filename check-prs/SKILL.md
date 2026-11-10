@@ -17,6 +17,7 @@ Arguments: none = full flow; `--team <name>`; `--repo <org/repo>`; `--dry-run`; 
 - Only `scripts/post.py` writes to GitHub. Use it only after I choose, with `--user-confirmed`.
 - Do not set a model on any subagent. Use the company default (Sonnet). Never use Haiku.
 - Read [known-issues.md](known-issues.md) first. Apply its fixes.
+- Every time you name a PR, in any text, question, option, or report, write its full link `https://github.com/<org>/<repo>/pull/<n>`. Never write only a number such as `#2976`.
 
 ## Steps
 

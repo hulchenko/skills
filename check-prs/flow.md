@@ -4,7 +4,7 @@
 
 Order: Easy, Medium, Hard. Sort inside a tab by `priority` (1 direct, 2 priority team, 3 other), then oldest first.
 Use `AskUserQuestion` multi-select. Up to 4 PRs per question and 4 questions per call. Page through more rounds if needed.
-Option label: one-line ASD-STE100 summary, repo, PR number. Option description: full PR URL, type reason, state.
+Option label: one-line ASD-STE100 summary and full PR URL. Option description: type reason, state.
 When a tab ends, run `scripts/cache.py set "<cache_key>" closed_date=<today> my_action=<action>` for each PR I handled. Run it with `dismissed=true` for PRs I dismissed.
 
 **Easy**: I pick PRs to approve. PRs with `approve_blocked` show but cannot be picked.
