@@ -23,7 +23,9 @@ When a tab ends, run `scripts/cache.py set "<cache_key>" closed_date=<today> my_
 - Final Sonnet pass: keep only critical and major findings. Each finding has: quoted code, link `https://github.com/<org>/<repo>/blob/<head_sha>/<path>#L<line>`, severity and reason, failure scenario (state, then wrong result), rule reference, "what the diff cannot show".
 - Mark these as `checked` or `not checked`: correctness and edge cases; tests and risk coverage; security, accessibility, i18n.
 - Show one PR at a time. No critical or major issue: say "No blocking issues" and offer Approve.
-- For each finding, show the exact comment the skill would post, as a draft: file, line, and full body text. Do this before I decide. Write every comment body in ASD-STE100 Simplified Technical English: short active sentences, one idea per sentence, approved words, no idioms. A comment states the problem, the failure scenario, and one question or fix.
+- Keep only the most crucial findings: at most 3 per PR, sorted by impact, highest first. Drop style, convention, and minor items (for example `React.FC`) unless I ask. Say in one line what you dropped.
+- Keep each comment short: at most 3 sentences. State the problem, a one-line failure example, and the fix. No long scenario, no rule recap, no extra questions.
+- For each finding, show the exact comment the skill would post, as a draft: file, line, and full body text. Do this before I decide. Write every comment body in ASD-STE100 Simplified Technical English: short active sentences, one idea per sentence, approved words, no idioms. A comment states the problem, a one-line failure example, and one fix. Lead with the most important point.
 - Code-owner warning: when `i_am_code_owner` is false, say "your approval does not satisfy code owners". If I was asked directly and own no changed path, offer Comment only.
 - I choose for each PR: Comment (post the drafts as shown), Edit (I change a draft or drop a finding, then show the new draft again), Approve, or Skip.
 - Post a comment only as the text I saw last. Never change the text after I choose.
