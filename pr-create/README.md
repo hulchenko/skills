@@ -32,7 +32,7 @@ If you do not give a ticket, the skill asks for it. The skill never guesses the 
 - **Title:** `type(scope): short description`. Maximum 70 characters.
 - **Description:** level-3 headings in this order:
   - `Summary` (always)
-  - `Testing`, `Risk`, `Rollout`, `Screenshots` (only when they apply)
+  - `Testing`, `Screenshots` (only when they apply)
   - `JIRA` (always)
 
 The `Screenshots` part is a Before and After table with placeholder images. Replace the placeholders after the PR opens.

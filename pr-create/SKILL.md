@@ -14,6 +14,17 @@ Write all output in ASD-STE100 Simplified Technical English. This rule has no ex
 - Use articles (a, an, the). Do not use arrows, idioms, or fragments.
 - Use one word for one thing. Keep technical names and code exactly as they are, in code format.
 
+Also remove AI writing patterns from the Summary. Apply these rules from the `unslop` skill:
+
+- Say what the change does. Name the mechanism, the file, or the number. Cut a sentence that could appear unchanged in another PR.
+- Do not end a sentence with an empty "-ing" phrase ("ensuring...", "improving...").
+- Do not use these words: additionally, crucial, enhance, robust, seamless, leverage, utilize, streamline, comprehensive. Use "is" or "has", not "serves as" or "features".
+- Do not use "not just X, but Y". Do not force ideas into groups of three.
+- Do not use em dashes, en dashes, or hyphens as dashes. Use a period or a comma. Use a colon only before a list or an example.
+- Do not use a bold label with a colon. Do not use emojis. Use straight quotes.
+- Use the active voice. Cut adverbs and filler. Use a hedge ("may") at most one time.
+- Do not use a metaphor where a literal phrase exists. Do not write a generic closing sentence.
+
 ## Rules for git and GitHub
 
 - The user gave permission for this skill to create a branch, commit, push, and open a draft PR. This permission applies only to this skill.
@@ -60,11 +71,11 @@ Write all output in ASD-STE100 Simplified Technical English. This rule has no ex
 
 Keep the text short and factual. Write only what a reviewer must know. Do not add a checklist or other headings.
 
-Write each part under its own level-3 heading (`### Summary`, `### Testing`, `### Risk`, `### Rollout`, `### Screenshots`, `### JIRA`). Do not use a colon in a heading. Put the text on the lines below the heading. Write the parts in this order. Omit a conditional part when it does not apply.
+Write each part under its own level-3 heading (`### Summary`, `### Testing`, `### Screenshots`, `### JIRA`). Do not add a Risk section or a Rollout section. Do not use a colon in a heading. Put the text on the lines below the heading. Write the parts in this order. Omit a conditional part when it does not apply.
 
 **1. Title (always).** Use one line, under 70 characters: `type(scope): short description`. Use a conventional commit type (`feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `perf`, `ci`, `build`, `style`). Choose the closest type. The scope is optional. Do not put a period at the end.
 
-**2. Summary (always).** Write the heading `### Summary`. Under it, start with 1–2 prose sentences. State the main change and the reason for it. Put the most important information first. Put the less important information after it.
+**2. Summary (always).** Write the heading `### Summary`. Under it, start with 1 or 2 prose sentences. State the main change and the reason for it. Put the most important information first. Put the less important information after it.
 - Add bullets after the prose only when bullets make the change easier to scan. Each bullet is one STE sentence, in order of importance.
 - Name files or functions in code format where they help the reader find the change.
 - If the PR changes more than about 15 files (not counting ignored files), write the text by area, not by file.
@@ -74,19 +85,7 @@ Write each part under its own level-3 heading (`### Summary`, `### Testing`, `##
 - A reviewer can smoke test the change. Give at most 3 short steps. Example: "Open `/settings/`. The page title shows the new copy."
 - A reviewer cannot smoke test the change. Write only: "Unit tests." or "E2E tests." or "Unit and E2E tests." Name only the kinds that cover the change.
 
-**4. Risk (conditional).** Add this part only when the diff touches one of these critical items.
-- Auth, session, permissions, or consent code.
-- Routing, middleware, or `next.config`.
-- Build, CI, Helm, Docker, or deploy files.
-- A removed or renamed public prop or export in a shared package. A shared package is a package that other repositories import.
-
-Name the trigger and say who or what is affected. Example text under the heading: "This change removes a public prop. All consumers of `UserCard` must update."
-
-Do not add Risk for other changes. Examples: an edit in a shared package that keeps the API, a dependency bump, or a changed default.
-
-**5. Rollout (conditional).** Add one sentence under the heading only when the change needs a feature flag, a config value, or a deploy order. Name the flag, the value, or the order.
-
-**6. Screenshots (conditional).** Add this part only when the diff changes visible UI. You cannot take screenshots. Write the heading `### Screenshots`, then this HTML table. The user replaces the placeholder images later. Do not use a Markdown table. GitHub shows empty Markdown cells very small. Use exactly this table:
+**4. Screenshots (conditional).** Add this part only when the diff changes visible UI. You cannot take screenshots. Write the heading `### Screenshots`, then this HTML table. The user replaces the placeholder images later. Do not use a Markdown table. GitHub shows empty Markdown cells very small. Use exactly this table:
 
 ```
 <table>
@@ -98,7 +97,7 @@ Do not add Risk for other changes. Examples: an edit in a shared package that ke
 </table>
 ```
 
-**7. JIRA (conditional).** Always add this part, under the heading `### JIRA`, as one line. Use the ticket from step 1. Use the form `<jira-base-url>/browse/TICKET`. If you do not know the Jira base URL, ask the user. If the user says there is no ticket, omit the line.
+**5. JIRA (conditional).** Always add this part, under the heading `### JIRA`, as one line. Use the ticket from step 1. Use the form `<jira-base-url>/browse/TICKET`. If you do not know the Jira base URL, ask the user. If the user says there is no ticket, omit the line.
 
 ## Example
 
